@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import Login from './components/Login'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Dashboard from './components/Dashboard'
+import FrameOperation from './components/FrameOperation'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    constructor(){
+        super();
+        this.state = {
+            frames: []
+        }
+        this.getDashboardDetails = this.getDashboardDetails.bind(this);
+    }
+    getDashboardDetails(res){
+                this.setState({
+                    frames: res
+                });
+    }
+    render() {
+        return(
+            <div>
+                <Router>
+                    <div>
+                        <Switch>
+                            <Route exact path = '/' component = {Login} />
+                            <Route exact path = '/dashboard' render={(props) => (localStorage.getItem('loggedin') ? <div><Header action={this.getDashboardDetails}/><Dashboard frames={this.state.frames} /><Footer /></div> : (<Redirect to="/" />))} />
+                            <Route exact path = '/addframe' render={(props) => (localStorage.getItem('loggedin') ? <div><Header action={this.getDashboardDetails}/><FrameOperation /><Footer /></div> : (<Redirect to="/" />))} />
+                        </Switch>
+                    </div>
+                </Router>
+            </div>
+        );
+    }
 }
-
 export default App;

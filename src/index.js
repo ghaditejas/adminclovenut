@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import './index.css';
+import './css/AdminLTE.css';
+import './css/custom.css';
+import './css/_all-skins.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
