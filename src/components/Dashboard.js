@@ -13,7 +13,7 @@ class Dashboard extends Component {
         axios.post(process.env.REACT_APP_API+'/api/deleteFrame', {code})
         .then(res => {
             alert('Frame Deleted!!');
-            location.reload();
+            window.location.reload();
         })
         .catch((error) => {
             alert('error ' + error);
