@@ -30,19 +30,19 @@ class Header extends Component {
         return(
             <div>
             <header className="main-header">
-                <a href="javascript:void(0)" className="logo">
+                <span className="logo">
                     <span className="logo-lg"><b>Clovenut</b>Admin</span>
-                </a>
+                </span>
                 <nav className="navbar navbar-static-top">
                     <div className="navbar-custom-menu">
                         <ul className="nav navbar-nav">
                             <li className="dropdown user user-menu">
-                                <a href="javascript:void(0)" className="dropdown-toggle" data-toggle="dropdown">
+                                <span className="dropdown-toggle" data-toggle="dropdown">
                                     <span className="hidden-xs">Sainty Thomas</span>
-                                </a>
+                                </span>
                             </li>
                             <li className="pull-right">
-                            <a href="#" onClick={this.UserLogout}><i className="fa fa-sign-out"></i></a>
+                            <span onClick={this.UserLogout}><i className="fa fa-sign-out"></i></span>
                             </li>
                         </ul>
                     </div>

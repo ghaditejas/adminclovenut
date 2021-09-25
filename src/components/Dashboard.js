@@ -32,8 +32,8 @@ class Dashboard extends Component {
                 <section className="content">
                     <button type="button" className="add-frame-btn btn btn-block btn-primary btn-lg">Add Frame</button>
                     <div className="col-sm-12">
-                    <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
+                    <div className="card-body table-responsive p-0">
+                <table className="table table-hover text-nowrap">
                   <thead>
                     <tr>
                         <th>ID</th>
@@ -51,7 +51,7 @@ class Dashboard extends Component {
                         <td>{frame.Frame_Name}</td>
                         <td>{frame.Frame_Code}</td>
                         <td>{frame.Frame_Description	}</td>
-                        <td><img src={frame.Frame_External_Link} /></td>
+                        <td><img src={frame.Frame_External_Link} alt="frame"/></td>
                         <td>
                             <div onClick={()=>this.deleteFrame(frame.Frame_Code)} className="frame-delete">
                             {" "}

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import Button from 'react-validation/build/button';
-import validator from 'validator';
 import axios from 'axios';  
 
 const required = (value) => {
