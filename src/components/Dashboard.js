@@ -7,8 +7,17 @@ class Dashboard extends Component {
         this.state = {
         }
         this.deleteFrame = this.deleteFrame.bind(this);
+        this.addFrame = this.addFrame.bind(this);
+        this.editFrame = this.editFrame.bind(this);
     }
 
+    addFrame(){
+        this.props.history.push('/addframe');
+    }
+
+    editFrame(code){
+        this.props.history.push(`/editFrame/${code}`);
+    }
     deleteFrame(code){
         axios.post(process.env.REACT_APP_API+'/api/deleteFrame', {code})
         .then(res => {
@@ -30,7 +39,7 @@ class Dashboard extends Component {
                     </h1>
                 </section>
                 <section className="content">
-                    <button type="button" className="add-frame-btn btn btn-block btn-primary btn-lg">Add Frame</button>
+                    <button onClick={this.addFrame} type="button" className="add-frame-btn btn btn-block btn-primary btn-lg">Add Frame</button>
                     <div className="col-sm-12">
                     <div className="card-body table-responsive p-0">
                 <table className="table table-hover text-nowrap">
@@ -56,6 +65,10 @@ class Dashboard extends Component {
                             <div onClick={()=>this.deleteFrame(frame.Frame_Code)} className="frame-delete">
                             {" "}
                                 <i className="fa fa-trash-o"></i>
+                            </div>
+                            <div onClick={()=>this.editFrame(frame.Frame_Code)} className="frame-delete">
+                            {" "}
+                                <i className="fa fa-pencil-square-o"></i>
                             </div>
                         </td>
                     </tr>

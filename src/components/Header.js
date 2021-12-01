@@ -11,6 +11,7 @@ class Header extends Component {
     }
     UserLogout(){
         localStorage.clear();
+        this.props.history.push('/');
     }
     componentDidMount(){   
 
@@ -56,12 +57,6 @@ class Header extends Component {
                         <Link to="/dashboard" >
                             <i className="fa fa-dashboard"></i> 
                             <span>Dashboard</span>
-                        </Link>
-                        </li>
-                        <li className="treeview">
-                        <Link to="/addframe" >
-                            <i className="fa fa-user"></i> 
-                            <span>Add Feedback</span>
                         </Link>
                         </li>
                     </ul>

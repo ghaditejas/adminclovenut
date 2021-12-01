@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import Login from './components/Login'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Dashboard from './components/Dashboard'
-import FrameOperation from './components/FrameOperation'
+import Login from './components/Login';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Dashboard from './components/Dashboard';
+import FrameOperation from './components/FrameOperation';
+import FrameEdit from './components/FrameEdit';
 
 class App extends Component {
     constructor(){
@@ -26,8 +27,9 @@ class App extends Component {
                     <div>
                         <Switch>
                             <Route exact path = '/' component = {Login} />
-                            <Route exact path = '/dashboard' render={(props) => (localStorage.getItem('loggedin') ? <div><Header action={this.getDashboardDetails}/><Dashboard frames={this.state.frames} /><Footer /></div> : (<Redirect to="/" />))} />
-                            <Route exact path = '/addframe' render={(props) => (localStorage.getItem('loggedin') ? <div><Header action={this.getDashboardDetails}/><FrameOperation /><Footer /></div> : (<Redirect to="/" />))} />
+                            <Route exact path = '/dashboard' render={(props) => (localStorage.getItem('loggedin') ? <div><Header action={this.getDashboardDetails} {...props}/><Dashboard frames={this.state.frames} {...props} /><Footer /></div> : (<Redirect to="/" />))} />
+                            <Route exact path = '/addframe' render={(props) => (localStorage.getItem('loggedin') ? <div><Header action={this.getDashboardDetails} {...props}/><FrameOperation   {...props} /><Footer /></div> : (<Redirect to="/" />))} />
+                            <Route exact path = '/editframe/:id' render={(props) => (localStorage.getItem('loggedin') ? <div><Header action={this.getDashboardDetails} {...props}/><FrameEdit   {...props} /><Footer /></div> : (<Redirect to="/" />))} />
                         </Switch>
                     </div>
                 </Router>

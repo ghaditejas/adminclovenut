@@ -12,9 +12,10 @@ const required = (value) => {
     }
 };
 
-class FrameOperation extends Component {
+class FrameEdit extends Component {
     constructor(props){
         super(props);
+        console.log(props,'propsssss');
         this.state = {
             name: '',
             code: '',
@@ -34,6 +35,28 @@ class FrameOperation extends Component {
         this.handleChangeImage = this.handleChangeImage.bind(this);
     }
 
+    componentDidMount(){
+      if(this.props.match.params.id){
+        axios.post(process.env.REACT_APP_API+'/api/getDefaultFrame',{frameCode:this.props.match.params.id})
+        .then((response) => {
+          console.log(response,'response')
+          this.setState(
+            {
+              name: response.data[0]['Frame_Name'],
+              code: response.data[0]['Frame_Code'],
+              description: response.data[0]['Frame_Description'],
+              url: response.data[0]['Frame_External_Link'],
+            }
+          );
+        })
+        .catch((error) => {
+          console.log(error, "error");
+          this.props.history.push('/dashboard');
+        });
+      }else{
+        this.props.history.push('/');
+      }
+    }
     handleChange(e){
         if(e.target.files){
             const imageState = `${e.target.name}Name`
@@ -62,11 +85,11 @@ class FrameOperation extends Component {
         formData.append('description',this.state.description);
         formData.append('url',this.state.url);
 
-        axios.post(process.env.REACT_APP_API+'/api/createFrame', formData,{header:{
+        axios.post(process.env.REACT_APP_API+`/api/editFrame/${this.props.match.params.id}`, formData,{header:{
             'Content-Type': 'multipart/form-data',
         }})
         .then(res => {
-            alert('Frame Created!!');
+            alert('Frame Edited!!');
             this.props.history.push('/dashboard');
         })
         .catch((error) => {
@@ -147,7 +170,6 @@ class FrameOperation extends Component {
                                                   value={this.state.image1Name} 
                                                   onChange={this.handleChange} 
                                                   placeholder="Frame Image*" 
-                                                  validations={[required]}
                                                 />
                                                 <span className="form-control-feedback"></span>
                                             </div>
@@ -160,7 +182,6 @@ class FrameOperation extends Component {
                                                   value={this.state.image2Name} 
                                                   onChange={this.handleChange} 
                                                   placeholder="Frame Image*" 
-                                                  validations={[required]}
                                                 />
                                                 <span className="form-control-feedback"></span>
                                             </div>
@@ -173,7 +194,6 @@ class FrameOperation extends Component {
                                                   value={this.state.image3Name} 
                                                   onChange={this.handleChange} 
                                                   placeholder="Frame Image*" 
-                                                  validations={[required]}
                                                 />
                                                 <span className="form-control-feedback"></span>
                                             </div>
@@ -186,7 +206,6 @@ class FrameOperation extends Component {
                                                   value={this.state.image4Name} 
                                                   onChange={this.handleChange} 
                                                   placeholder="Frame Image*" 
-                                                  validations={[required]}
                                                 />
                                                 <span className="form-control-feedback"></span>
                                             </div>
@@ -226,5 +245,5 @@ class FrameOperation extends Component {
         );
     }
 }
-export default FrameOperation;
+export default FrameEdit;
 
