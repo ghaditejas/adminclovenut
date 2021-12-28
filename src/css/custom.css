@@ -109,7 +109,7 @@ ol.progtrckr li.progtrckr-todo:before {
 }
 .add-frame-btn{
     float: right;
-    width: 10%;
+    width: auto;
     padding: 5px;
 }
 

@@ -58,6 +58,10 @@ class Header extends Component {
                             <i className="fa fa-dashboard"></i> 
                             <span>Dashboard</span>
                         </Link>
+                        <Link to="/category" >
+                            <i className="fa fa-list-alt"></i> 
+                            <span>Category</span>
+                        </Link>
                         </li>
                     </ul>
                 </section>                

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
+import Select from 'react-validation/build/select';
 import Button from 'react-validation/build/button';
 import axios from 'axios';  
 
@@ -28,6 +29,8 @@ class FrameOperation extends Component {
             image3Name:'',
             image4Name:'',
             url:'',
+            frameCategory:[],
+            category:'',
         }
         this.createFrame = this.createFrame.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -51,6 +54,19 @@ class FrameOperation extends Component {
     handleChangeImage(e){
       console.log(e,'testimage');
     }
+
+    componentDidMount(){
+        axios.get(process.env.REACT_APP_API+'/api/getFrameCategory')
+          .then(res => {
+              this.setState({
+                frameCategory : res.data
+              },()=>console.log(this.state.frameCategory,'checkinngggg'))
+          })
+          .catch((error) => {
+              alert('error ' + error);
+          });
+      }
+
     createFrame(){
         const formData = new FormData();
         formData.append('image1',this.state.image1);
@@ -61,7 +77,7 @@ class FrameOperation extends Component {
         formData.append('name',this.state.name);
         formData.append('description',this.state.description);
         formData.append('url',this.state.url);
-
+        formData.append('category',this.state.category);
         axios.post(process.env.REACT_APP_API+'/api/createFrame', formData,{header:{
             'Content-Type': 'multipart/form-data',
         }})
@@ -190,30 +206,23 @@ class FrameOperation extends Component {
                                                 />
                                                 <span className="form-control-feedback"></span>
                                             </div>
-                                             {/*<div>
-                                              <Widget
-                                                id="file"
-                                                publicKey="023600512e719c72f047"
-                                                clearable="true"
-                                                name="image2"
-                                                imagesOnly="true"
-                                                onChange={this.handleChangeImage}
-                                              />
+                                            <div className="form-group has-feedback">
+                                                <label>Frame Category</label>
+                                                <Select 
+                                                  type="file" 
+                                                  name="category" 
+                                                  className="form-control" 
+                                                  value={this.state.category} 
+                                                  onChange={this.handleChange} 
+                                                  placeholder="Frame Category" 
+                                                  validations={[required]}
+                                                >
+                                                    <option value="">Select Category</option>
+                                                    {this.state.frameCategory.length && this.state.frameCategory.map(frameCategory => 
+                                                    <option value={frameCategory.id}>{frameCategory.Category}</option>)
+                                                    }
+                                                </Select>
                                             </div>
-                                            <div>
-                                              <Widget
-                                                id="file"
-                                                publicKey="023600512e719c72f047"
-                                                clearable="true"
-                                                name="image3"
-                                                imagesOnly="true"
-                                                onChange={this.handleChangeImage}
-                                              />
-                                            </div> */}
-                                            {/* <div className="form-group"> 
-                                                <label>Feedback*</label>
-                                                <textarea className="form-control" name={"feedback"+i} id={"feedback"+i} type="text"></textarea>
-                                            </div> */}
                                             <Button type="button" className="btn btn-primary" onClick={this.createFrame}>Submit</Button>
                                             <button type="button" className="btn btn-primary" style={{marginLeft:'5px'}} onClick={()=>this.props.history.push('/dashboard')}>Cancel</button>
                                         </div>
