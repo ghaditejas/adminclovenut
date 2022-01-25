@@ -32,7 +32,7 @@ class Header extends Component {
             <div>
             <header className="main-header">
                 <span className="logo">
-                    <span className="logo-lg"><b>Clovenut</b>Admin</span>
+                    <span className="logo-lg"><b>Picframe</b>Admin</span>
                 </span>
                 <nav className="navbar navbar-static-top">
                     <div className="navbar-custom-menu">

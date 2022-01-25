@@ -73,7 +73,7 @@ class Login extends Component {
             <div>
                 <div className="login-box">
                     <div className="login-logo">
-                        <b>Clovenut</b>
+                        <b>Picframe</b>
                     </div>
                     <div className="login-box-body">
                         <h3> <p className="login-box-msg">Sign in</p> </h3>
