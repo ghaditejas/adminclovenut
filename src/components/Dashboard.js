@@ -62,11 +62,11 @@ class Dashboard extends Component {
                         <td>{frame.Frame_Description	}</td>
                         <td><img style={{width:'200px'}}src={frame.Frame_External_Link} alt="frame"/></td>
                         <td>
-                            <div onClick={()=>this.deleteFrame(frame.Frame_Code)} className="frame-delete">
+                            <div onClick={()=>this.deleteFrame(frame.id)} className="frame-delete">
                             {" "}
                                 <i className="fa fa-trash-o"></i>
                             </div>
-                            <div onClick={()=>this.editFrame(frame.Frame_Code)} className="frame-delete">
+                            <div onClick={()=>this.editFrame(frame.id)} className="frame-delete">
                             {" "}
                                 <i className="fa fa-pencil-square-o"></i>
                             </div>

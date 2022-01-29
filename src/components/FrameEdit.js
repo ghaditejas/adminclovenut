@@ -49,7 +49,7 @@ class FrameEdit extends Component {
               alert('error ' + error);
           });
       if(this.props.match.params.id){
-        axios.post(process.env.REACT_APP_API+'/api/getDefaultFrame',{frameCode:this.props.match.params.id})
+        axios.post(process.env.REACT_APP_API+'/api/getDefaultFrame',{id:this.props.match.params.id})
         .then((response) => {
           console.log(response,'response')
           this.setState(
