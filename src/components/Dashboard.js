@@ -29,6 +29,21 @@ class Dashboard extends Component {
         });
     }
 
+    componentDidMount(){   
+
+        if(localStorage.getItem('loggedin')){
+            axios.get(process.env.REACT_APP_API+'/api/getFrames', { headers: { Authorization: localStorage.getItem('token') } }).then(res => {
+                this.props.action(res.data);
+            })
+            .catch((error) => {
+                alert('error ' + error);
+            });
+        }else{
+            this.props.history.push('/');
+        }
+
+    }
+    
     render() {
         console.log(this.props.frames);
         return(

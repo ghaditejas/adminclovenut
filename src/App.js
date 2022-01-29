@@ -29,7 +29,7 @@ class App extends Component {
                     <div>
                         <Switch>
                             <Route exact path = '/' component = {Login} />
-                            <Route exact path = '/dashboard' render={(props) => (localStorage.getItem('loggedin') ? <div><Header action={this.getDashboardDetails} {...props}/><Dashboard frames={this.state.frames} {...props} /><Footer /></div> : (<Redirect to="/" />))} />
+                            <Route exact path = '/dashboard' render={(props) => (localStorage.getItem('loggedin') ? <div><Header action={this.getDashboardDetails} {...props}/><Dashboard frames={this.state.frames} action={this.getDashboardDetails} {...props} /><Footer /></div> : (<Redirect to="/" />))} />
                             <Route exact path = '/addframe' render={(props) => (localStorage.getItem('loggedin') ? <div><Header action={this.getDashboardDetails} {...props}/><FrameOperation   {...props} /><Footer /></div> : (<Redirect to="/" />))} />
                             <Route exact path = '/editframe/:id' render={(props) => (localStorage.getItem('loggedin') ? <div><Header action={this.getDashboardDetails} {...props}/><FrameEdit   {...props} /><Footer /></div> : (<Redirect to="/" />))} />
                             <Route exact path = '/category' render={(props) => (localStorage.getItem('loggedin') ? <div><Header action={this.getDashboardDetails} {...props}/><Category frames={this.state.frames} {...props} /><Footer /></div> : (<Redirect to="/" />))} />

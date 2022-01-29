@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 class Header extends Component {
     constructor(props){
@@ -13,20 +12,20 @@ class Header extends Component {
         localStorage.clear();
         this.props.history.push('/');
     }
-    componentDidMount(){   
+    // componentDidMount(){   
 
-        if(localStorage.getItem('loggedin')){
-            axios.get(process.env.REACT_APP_API+'/api/getFrames', { headers: { Authorization: localStorage.getItem('token') } }).then(res => {
-                this.props.action(res.data);
-            })
-            .catch((error) => {
-                alert('error ' + error);
-            });
-        }else{
-            this.props.history.push('/');
-        }
+    //     if(localStorage.getItem('loggedin')){
+    //         axios.get(process.env.REACT_APP_API+'/api/getFrames', { headers: { Authorization: localStorage.getItem('token') } }).then(res => {
+    //             this.props.action(res.data);
+    //         })
+    //         .catch((error) => {
+    //             alert('error ' + error);
+    //         });
+    //     }else{
+    //         this.props.history.push('/');
+    //     }
 
-    }
+    // }
     render() {
         return(
             <div>
